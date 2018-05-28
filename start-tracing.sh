@@ -34,7 +34,7 @@ lttng untrack -k --pid --all
 sleep 1
 (
 source ~/.bashrc
-go get github.com/SkuaTracing/lttng-adapter
+go get -u github.com/SkuaTracing/lttng-adapter
 babeltrace --input-format=lttng-live net://localhost/host/voxel/my-kernel-session --clock-date --clock-gmt --no-delta | lttng-adapter
 )
 
