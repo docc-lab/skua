@@ -3,7 +3,7 @@ set -x
 
 # jaeger-ctx module
 (
-	cd ../jaeger-ctx
+	cd ~/jaeger-ctx
 	insmod jaeger_ctx.ko
 )
 
