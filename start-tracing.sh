@@ -34,9 +34,7 @@ lttng untrack -k --pid --all
 sleep 1
 (
 source ~/.bashrc
-cd ~/golang/src/github.com/hsheth2/lttng-adapter
-go build main.go
-#babeltrace --input-format=lttng-live net://localhost/host/voxel/my-kernel-session | ./main
-babeltrace --input-format=lttng-live net://localhost/host/voxel/my-kernel-session --clock-date --clock-gmt --no-delta | ./main
+go get github.com/SkuaTracing/lttng-adapter
+babeltrace --input-format=lttng-live net://localhost/host/voxel/my-kernel-session --clock-date --clock-gmt --no-delta | lttng-adapter
 )
 
