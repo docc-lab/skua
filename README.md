@@ -36,3 +36,5 @@ The following steps set up Skua:
 
 ## Usage
 To start tracing, run the `./start-tracing.sh` script. Then, you must track the processes that you are targetting. The easiest way to do this is by prepending the `./trace-process.sh` script before the given command. If this is not possible, you must manually track the PID of the target process using `lttng track -k --pid <pid>`. To stop tracing, run the `./stop-tracing.sh` script. 
+
+In addition, the process being traced must be instrumented using a modified Jaeger client library, like [our `jaeger-client-cpp`](https://github.com/SkuaTracing/jaeger-client-cpp). This ensures that the context information is propagated into the kernel properly. 
