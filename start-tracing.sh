@@ -4,7 +4,7 @@ set -x
 # Insert jaeger-ctx module
 (
 	cd ../jaeger-ctx
-	insmod jaeger_ctx.ko
+	sudo insmod jaeger_ctx.ko
 )
 
 # Docker
