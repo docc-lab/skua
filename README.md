@@ -5,34 +5,22 @@ Integrates LTTng's kernel-level tracing with the Jaeger trace framework.
 See [our slides](http://math.mit.edu/research/highschool/primes/materials/2018/conf/12-4%20Sheth-Sun.pdf) for details on our motivation, design, implementation, and results. 
 
 ## Requirements
-- Apache Thrift v0.9.2
 - OpenTracing C++ v1.3.0
-- Docker
-- Go must be installed, and the `$GOPATH/bin` must be added to the path
-- Our [modified version of Linux](https://github.com/SkuaTracing/linux-lttng) must be running
+- Apache Thrift v0.11.0
+- Golang with a `GOPATH` setup and `$GOPATH/bin` added to the path
 
-Our install of Skua uses the following layout in the home directory:
-```
-~
-|-- golang/{src,pkg,bin}
-|-- jaeger-client-cpp
-|-- jaeger-client-cpp-0.3.0
-|-- jaeger-ctx
-|-- linux-lttng
-|-- lttng-modules
-|-- lttng-tools
-|-- opentracing-cpp-1.3.0
-|-- skua
-|-- skua-tests
-`-- thrift-0.9.2
-```
+## Setup
+1. Recompile your Linux kernel with our [modified version of Linux](https://github.com/docc-lab/skua-linux-lttng). Because our changes to the kernel are very minimal, it is also possible to apply the [patch](https://github.com/docc-lab/skua-linux-lttng/compare/a3225b07d9437791069476cc1669f879d2cf6bb2...master.patch) to a different Linux source tree. 
 
-The following steps set up Skua:
-1. We assume that our modified version of Linux is already running and the above requirements are fulfilled. 
-2. Build and install `lttng-modules` using the instructions in the README. 
-3. Build and install `lttng-tools` using the instructions in the README. 
-4. Build the `jaeger-ctx` kernel module. 
-5. Build and install the `jaeger-client-cpp` and `opentracing-cpp` libraries as needed. 
+2. Compile and install [the skua kernel module](https://github.com/docc-lab/skua-jaeger-ctx) using the instructions in the README. 
+
+3. Install [lttng-tools](https://github.com/docc-lab/skua-lttng-tools/) v2.10. 
+
+4. Install our modified version of [lttng-modules](https://github.com/docc-lab/skua-lttng-modules) v2.10. 
+
+5. Fetch the [skua-lttng-adapter](https://github.com/docc-lab/skua-lttng-adapter) using `go get -u github.com/docc-lab/skua-lttng-adapter`. 
+
+6. Install Skua-patched Jaeger client libraries as needed. Currently, we support [C++](https://github.com/docc-lab/skua-jaeger-client-cpp) and [Java](https://github.com/docc-lab/skua-jaeger-client-java). 
 
 ## Usage
 To start tracing, run the `./start-tracing.sh` script. Then, you must track the processes that you are targetting. The easiest way to do this is by prepending the `./trace-process.sh` script before the given command. If this is not possible, you must manually track the PID of the target process using `lttng track -k --pid <pid>`. To stop tracing, run the `./stop-tracing.sh` script. 
