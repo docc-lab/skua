@@ -1,13 +1,15 @@
 # Skua
 Integrates LTTng's kernel-level tracing with the Jaeger trace framework. 
 
+Note that this repository simply contains a few helper scripts to run Skua. All of the Skua repos are available [on GitHub](https://github.com/docc-lab?q=skua); see [setup](#setup) for instructions. 
+
 ## Design
 See [our slides](http://math.mit.edu/research/highschool/primes/materials/2018/conf/12-4%20Sheth-Sun.pdf) for details on our motivation, design, implementation, and results. 
 
 ## Requirements
 - OpenTracing C++ v1.3.0
 - Apache Thrift v0.11.0
-- Golang with a `GOPATH` setup and `$GOPATH/bin` added to the path
+- Golang with a `$GOPATH` setup and `$GOPATH/bin` added to the path
 - A working Jaeger collection setup. For development purposes, it is easiest to run the `jaegertracing/all-in-one` docker container. 
 - [Babeltrace](http://diamon.org/babeltrace/)
 
@@ -17,7 +19,7 @@ See [our slides](http://math.mit.edu/research/highschool/primes/materials/2018/c
 3. Install [lttng-tools](https://github.com/docc-lab/skua-lttng-tools/) v2.10. 
 4. Install our modified version of [lttng-modules](https://github.com/docc-lab/skua-lttng-modules) v2.10. 
 5. Fetch the [skua-lttng-adapter](https://github.com/docc-lab/skua-lttng-adapter) using `go get -u github.com/docc-lab/skua-lttng-adapter`. 
-6. Install Skua-patched Jaeger client libraries as needed. Currently, we support [C++](https://github.com/docc-lab/skua-jaeger-client-cpp) and [Java](https://github.com/docc-lab/skua-jaeger-client-java). 
+6. Install Skua-patched Jaeger client libraries as needed. Currently, have patched the [C++](https://github.com/docc-lab/skua-jaeger-client-cpp) and [Java](https://github.com/docc-lab/skua-jaeger-client-java) Jaeger clients. 
 
 ## Usage
 
