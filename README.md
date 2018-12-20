@@ -4,7 +4,7 @@ Integrates LTTng's kernel-level tracing with the Jaeger trace framework.
 Note that this repository simply contains a few helper scripts to run Skua. All of the Skua repos are available [on GitHub](https://github.com/docc-lab?q=skua); see [setup](#setup) for instructions. 
 
 ## Design
-See [our slides](http://math.mit.edu/research/highschool/primes/materials/2018/conf/12-4%20Sheth-Sun.pdf) for details on our motivation, design, implementation, and results. 
+See [our slides](https://andrewsun.com/static/skua-devconf.pdf) for details on our motivation, design, implementation, and results. 
 
 ## Requirements
 - OpenTracing C++ v1.3.0
