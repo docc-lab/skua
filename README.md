@@ -7,7 +7,7 @@ Note that this repository simply contains a few helper scripts to run Skua. All 
 See [our slides](https://andrewsun.com/static/skua-devconf.pdf) for details on our motivation, design, implementation, and results. 
 
 ## Requirements
-- OpenTracing C++ v1.3.0
+- OpenTracing C++ v1.4.2
 - Apache Thrift v0.11.0
 - Golang with a `$GOPATH` setup and `$GOPATH/bin` added to the path
 - A working Jaeger collection setup. For development purposes, it is easiest to run the `jaegertracing/all-in-one` docker container. 
