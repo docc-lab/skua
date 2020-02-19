@@ -1,8 +1,8 @@
 #!/bin/bash
 set -x
-lttng stop
+sudo lttng stop
 sleep 2
-lttng destroy
+sudo lttng destroy
 sleep 3
 killall babeltrace
 sleep 0.1
