@@ -65,10 +65,10 @@ More info from: [docc-lab/skua-linux-lttng](https://github.com/docc-lab/skua-lin
 ```shell
 sudo apt-get update
 sudo apt-get install -y git fakeroot build-essential ncurses-dev xz-utils libssl-dev bc flex libelf-dev bison cmake libyaml-cpp-dev
-cd
+cd ~/
 wget https://github.com/docc-lab/skua-linux-lttng/compare/a3225b07d9437791069476cc1669f879d2cf6bb2...master.patch
 mv a3225b07d9437791069476cc1669f879d2cf6bb2...master.patch skua.patch
-wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.15.14.tar.xz
+cd && wget https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.15.14.tar.xz
 xz -cd linux-4.15.14.tar.xz | tar xvf -
 cd ~/linux-4.15.14
 git init
@@ -122,8 +122,7 @@ Set up github ssh key before clone projects from github.
 
 ```shell
 sudo apt-get install -y automake bison flex g++ git libboost-all-dev libevent-dev libssl-dev libtool make pkg-config
-cd
-git clone git@github.com:apache/thrift.git
+cd && git clone git@github.com:apache/thrift.git
 cd ~/thrift
 git checkout 0.11.0
 ./bootstrap.sh
@@ -135,12 +134,10 @@ sudo make install
 ### 4. Install opentracing c++ client
 
 ```shell
-cd
-git clone git@github.com:opentracing/opentracing-cpp.git
+cd && git clone git@github.com:opentracing/opentracing-cpp.git
 cd ~/opentracing-cpp/
 git checkout v1.4.2
-mkdir .build
-cd .build
+mkdir .build && cd .build
 cmake ..
 make
 sudo make install
@@ -195,8 +192,7 @@ sudo apt-get install -y babeltrace
 [docc-lab/skua-jaeger-ctx](https://github.com/docc-lab/skua-jaeger-ctx)
 
 ```shell
-cd
-git clone git@github.com:docc-lab/skua-jaeger-ctx.git
+cd && git clone git@github.com:docc-lab/skua-jaeger-ctx.git
 cd ~/skua-jaeger-ctx/
 make
 sudo insmod jaeger_ctx.ko
@@ -207,8 +203,7 @@ Install pre-request library
 
 ```shell
 # install liburcu
-cd 
-git clone git://git.liburcu.org/userspace-rcu.git
+cd && git clone git://git.liburcu.org/userspace-rcu.git
 cd ~/userspace-rcu
 git checkout stable-0.9
 sudo apt-get install -y autoconf automake autopoint
@@ -224,8 +219,7 @@ sudo apt-get install -y libpopt-dev uuid-dev libxml2-dev liblttng-ust-dev asciid
 Install skua modified lttng tools
 
 ```shell
-cd ~/
-git clone git@github.com:docc-lab/skua-lttng-tools.git
+cd && git clone git@github.com:docc-lab/skua-lttng-tools.git
 cd ~/skua-lttng-tools
 ./bootstrap
 ./configure
@@ -244,8 +238,7 @@ sudo usermod -aG lttng $USER
 ### 9. Install modified version of lttng-modules v2.10
 
 ```shell
-cd ~/
-git clone git@github.com:docc-lab/skua-lttng-modules.git
+cd && git clone git@github.com:docc-lab/skua-lttng-modules.git
 cd ~/skua-lttng-modules
 make
 sudo make modules_install
@@ -261,8 +254,7 @@ go get -u github.com/docc-lab/skua-lttng-adapter
 ### 11. Install skua-patched Jaeger Client libraries
 
 ```shell
-cd ~/
-git clone git@github.com:docc-lab/skua-jaeger-client-cpp.git
+cd && git clone git@github.com:docc-lab/skua-jaeger-client-cpp.git
 cd ~/skua-jaeger-client-cpp
 ```
 
@@ -278,8 +270,7 @@ Install the library
 
 ```shell
 cd ~/skua-jaeger-client-cpp
-mkdir build
-cd build
+mkdir build && cd build
 cmake ..
 make
 ./app ../examples/config.yml
@@ -292,38 +283,31 @@ sudo ldconfig # rebuild share library cache
 download skua script
 
 ```shell
-git clone git@github.com:docc-lab/skua.git
+cd && git clone git@github.com:docc-lab/skua.git
 ```
 
 download skua test program
 
 ```shell
-git clone git@github.com:docc-lab/skua-tests.git
+cd && git clone git@github.com:docc-lab/skua-tests.git
 ```
 
 ### 13. Use skua-test program
 
+Comply the C++ test program:
+
+```shell
+cd ~/skua-tests/correctness
+./build.sh
+# once succeed, there will be a.out file in the folder
+```
 
 Start tracing:
 
 ```shell
 cd ~/skua
 ./start-tracing.sh
-./trace-process.sh
-```
-
-Run the C++ test program:
-
-```shell
-cd ~/skua-tests/correctness
-./build.sh
-./a.out
-```
-
-Log on the Jaeger's UI and check the result
-
-```shell
-http://your.ip.address:16686
+./trace-process.sh ~/skua-tests/correctness/a.out
 ```
 
 Stop tracing:
@@ -333,11 +317,8 @@ cd ~/skua
 ./stop-tracing.sh
 ```
 
-### Small Note
+Log on the Jaeger's UI and check the result
 
 ```shell
-g++ -O3 -march=native -flto -std=c++11 ~/library/skua-jaeger-client-cpp/build/libjaegertracing.a main.cpp -L/usr/local/lib/ -lopentracing -ljaegertracing -lpthread
-
-ldconfig
+http://your.ip.address:16686
 ```
-

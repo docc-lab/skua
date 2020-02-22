@@ -1,12 +1,6 @@
 #!/bin/bash
 set -x
 
-# Insert jaeger-ctx module
-#(
-#	cd ../jaeger-ctx
-#	sudo insmod jaeger_ctx.ko
-#)
-
 # Docker
 sudo docker stop jaeger_all_in_one
 sudo docker rm jaeger_all_in_one
@@ -35,6 +29,5 @@ sleep 1
 (
 	#source ~/.bashrc
 	#go get -u github.com/docc-lab/skua-lttng-adapter
-	babeltrace --input-format=lttng-live net://localhost/host/voxel/my-kernel-session --clock-date --clock-gmt --no-delta | skua-lttng-adapter
+	babeltrace --input-format=lttng-live net://localhost/host/$HOSTNAME/my-kernel-session --clock-date --clock-gmt --no-delta | skua-lttng-adapter
 )
-

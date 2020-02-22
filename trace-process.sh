@@ -10,4 +10,3 @@ trap "kill $PROCESS_PID" sigint
 wait $PROCESS_PID
 
 sudo lttng untrack -k --pid $PROCESS_PID
-
