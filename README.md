@@ -322,3 +322,5 @@ Log on the Jaeger's UI and check the result
 ```shell
 http://your.ip.address:16686
 ```
+
+![correctness_UI_result](correctness_UI_result.png)
