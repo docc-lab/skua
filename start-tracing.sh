@@ -29,5 +29,5 @@ sleep 1
 (
 	#source ~/.bashrc
 	#go get -u github.com/docc-lab/skua-lttng-adapter
-	babeltrace --input-format=lttng-live net://localhost/host/$HOSTNAME/my-kernel-session --clock-date --clock-gmt --no-delta | skua-lttng-adapter
+	babeltrace --input-format=lttng-live net://localhost/host/$HOSTNAME/my-kernel-session --clock-date --clock-gmt --no-delta | skua-lttng-adapter &>/dev/null &
 )
